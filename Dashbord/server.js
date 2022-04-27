@@ -23,6 +23,12 @@ const equipeRoute = require("./routes/equipeRoute");
 
 // const TeamModel = require('./models/Team');
 // const { findById } = require('./models/Team');
+const scraper = require('./routes/questionscraper')
+const jobscrapper = require('./routes/joboffers_scrapper')
+const { Cheerio } = require('cheerio')
+const axios = require('axios');
+const cheerio = require('cheerio');
+const fetch =require('node-fetch')
 
 
 const app = express()
@@ -188,4 +194,28 @@ io.on('connection',(socket)=> {
 })
 
 
+/////////job offers scrapping/////////////
 
+
+app.get('/searchjob/:title',(req,res)=>{
+  jobscrapper.searchoffer(req.params.title)
+  .then(offers=>{
+    res.json(offers);
+  })
+})
+
+///////////////question scrapping//////////////
+
+app.post('/search/:title',(req,res)=>{
+  scraper.searchqt(req.params.title)
+  .then(questions=>{
+    res.json(questions);
+  })
+})
+
+app.get('/search/:title',(req,res)=>{
+  scraper.searchqt(req.params.title)
+  .then(questions=>{
+    res.json(questions);
+  })
+})
