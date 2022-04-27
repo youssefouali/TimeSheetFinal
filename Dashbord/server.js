@@ -41,21 +41,22 @@ app.use(fileUpload({
 ///////////////////////////////////////////////////////////
 dotenv.config();
 app.use(express.json());
-app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use("/images", express.static(path.resolve(__dirname, "./images")));
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, "images");
-    },
-    filename: (req, file, cb) => {
-      cb(null, req.body.name);
-    },
-  });
-const upload = multer({ storage: storage });
-app.post("/api/upload", upload.single("file"), (req, res) => {
-  res.status(200).json("File has been uploaded");
+  destination: (req, file, cb) => {
+    cb(null,"images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
 });
+const upload = multer({ storage: storage });
 
+app.post("/upload", upload.single("file"), (req, res) => {
+res.status(200).json(req.body.name);
+
+});
 
 // require('./routes/dialogFlowRoutes')(app);
 app.use('/chatbot',require('./routes/dialogFlowRoutes'));
