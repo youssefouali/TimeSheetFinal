@@ -10,7 +10,7 @@ export default function Post({ post }) {
   return (
     <div className="post">
       
-      <a href={`/pages/blog/singlepost/${post._id}`}  id = "grayscale" >{post.photo && <img src={PF + post.photo} alt="" />}
+      <a href={`/pages/blog/singlepost/${post._id}`} className="column " id = "grayscale" >{post.photo && <img src={PF + post.photo} alt="" />}
 </a>
       <div className="postInfo">
         <div className="postCats">
@@ -18,8 +18,9 @@ export default function Post({ post }) {
             <span className="postCat">{c.name}</span>
           ))}
         </div>
-        <Link to={`/pages/blog/singlepost/${post._id}`} className="link">
-          <span className="postTitle">{post.title}</span>
+        <Link  style={{color:"black"}} to={`/pages/blog/singlepost/${post._id}`}>
+          
+          <font className="postTitle">{post.title}</font>
         </Link>
         <hr />
         <span className="postDate">

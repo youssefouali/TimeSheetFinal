@@ -9,7 +9,7 @@ const Homeappconfig = {
   routes: [
     {
       path: '/apps/blog/blog-home',
-      component: lazy(() => import('./Home.jsx')),
+      component: lazy(() => import('./Homeapp')),
     },
   ],
 };

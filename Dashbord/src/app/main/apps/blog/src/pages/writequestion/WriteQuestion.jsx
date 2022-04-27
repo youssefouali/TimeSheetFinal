@@ -1,7 +1,7 @@
 import { useContext,useEffect, useState } from "react";
 import "./writequestion.css";
 import axios from "axios";
-import { Context } from "../../context/Context";
+// import { Context } from "../../context/Context";
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
@@ -15,31 +15,48 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./writequestion.css";
 import { useLocation } from "react-router";
 import Questions from "../../components/questions/Questions";
+import Questionsearchbar from '../../components/questionsearchbar/questionsearchbar'
+import Button from '@material-ui/core/Button';
+
 
 
 export default function WriteQuestion() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
-  const { user } = useContext(Context);
+  // const { user } = useContext(Context);
   const [questions, setQuestions] = useState([]);
   const { search } = useLocation();
+  const [questionss, setQuestionss] = useState([]);
+  const [show, setShow] = useState(false);
 
-
-
+//searchbar get
   useEffect(() => {
     const fetchQuestions = async () => {
       const res = await axios.get("/questions" + search);
-      setQuestions(res.data);
+      setQuestionss(res.data);
     };
     fetchQuestions();
   }, [search]);
 
 
+  //four questions get
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const res = await axios.get("/questions/four" + search);
+      setQuestions(res.data);
+    };
+    fetchQuestions();
+  }, [search]);
+
+  useEffect(() => {
+    setShow(true);  }, []);
+
+    const emailvalue = localStorage.getItem("emailvalue");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newQuestion = {
-      username: user.username,
+      emailvalue:emailvalue,
       title,
       desc,
     };
@@ -56,16 +73,17 @@ export default function WriteQuestion() {
 
 
 
-
-
-
-  return (<div className="writequestionhome">
-     
-    <div className="writequestion">
-     
+  return (
+  <div >
+   
+    <div >
+    <Questionsearchbar data={questionss} className="searchb"   placeholder="Search your question here .."
+           />
       <form className="writequestionForm" onSubmit={handleSubmit}>
         <div className="writequestionFormGroup">
-          
+       
+     <p className="newspan">Add a new question down below  &#8681; 
+:</p> 
        
           <input
             type="text"
@@ -117,7 +135,13 @@ export default function WriteQuestion() {
     </>
 
     </div>
+
+<div className="viewmorebtnpo"> <Button href="/apps/blog/allquestions" className="viewmorebtn" size="medium" style={{width:"250px"}} >
+           View All Questions
+         </Button></div>
+   
     </div>
+   
   );
 }
 

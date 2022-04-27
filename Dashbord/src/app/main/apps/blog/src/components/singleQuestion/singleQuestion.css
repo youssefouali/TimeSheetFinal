@@ -92,3 +92,22 @@
     margin-top: 20px;
   }
   
+  .deleteicon{
+    cursor: pointer;
+    color: rgb(255, 145, 0);
+    font-size: larger;
+  
+   
+  }
+
+  .deleteicon:hover{
+    cursor: pointer;
+    color: rgb(220, 92, 60);
+    font-size:xx-large;
+  
+   
+  }
+
+  .linkc{
+    color:#b39656 ;
+  }

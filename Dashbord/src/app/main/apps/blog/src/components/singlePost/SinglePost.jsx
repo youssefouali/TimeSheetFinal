@@ -13,8 +13,12 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-
-
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import UpdateIcon from '@material-ui/icons/Update';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 export default function SinglePost() {
@@ -22,11 +26,17 @@ export default function SinglePost() {
   const path = location.pathname;
   const [post, setPost] = useState({});
   const PF = "http://localhost:5000/images/";
-
+  const emailvalue = localStorage.getItem("emailvalue");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
-
+  const useStyles = makeStyles((theme) => ({
+    margin: {
+      margin: theme.spacing(1),
+    },
+   
+  }));
+  const classes = useStyles();
 
 
   const valeur =localStorage.getItem("emailvalue");
@@ -62,16 +72,18 @@ export default function SinglePost() {
   const handleDelete = async () => {
     try {
       await axios.delete(`/blogposts/${post._id}`, {
-        data: { name: data.name },
+        // data: { name: data.name },
       });
-      window.location.replace("/");
-    } catch (err) {}
+      console.log("deleted")
+      window.location.replace("/apps/blog/blog-home");
+      
+    } catch (err) {console.log(err)}
   };
 
   const handleUpdate = async () => {
     try {
       await axios.put(`/blogposts/${post._id}`, {
-        name:data.name,
+        // name:data.name,
         title,
         desc,
       });
@@ -96,16 +108,22 @@ export default function SinglePost() {
         ) : (
           <h1 className="singlePostTitle">
             {title}
-            {post.name === data?.name && (
-              <div >
-                <i
+            {post.emailvalue === emailvalue && (
+              <div className="iconsb">
+           
+          
+              
+
+<Tippy content="Update post ?" ><UpdateIcon className="deleteicon"
                  
-                  onClick={() => setUpdateMode(true)}
-                >oijoi</i>
-                <DeleteForeverIcon
+                 onClick={() => setUpdateMode(true)}/></Tippy>
+
+<Tippy content="Delete post ?" ><DeleteOutlineIcon className="deleteicon"
                  
-                  onClick={handleDelete}
-                />
+                 onClick={handleDelete}/></Tippy>
+                
+                
+                
               </div>
             )}
           </h1>
@@ -113,8 +131,8 @@ export default function SinglePost() {
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
             Author:
-            <Link to={`/?data=${post.name}`} className="link">
-              <b> {post.name}</b>
+            <Link to={`/apps/blog/blog-home?user=${post.emailvalue}`} >
+              <font className="linkc"> {post.emailvalue}</font>
              
             </Link>
           </span>
@@ -144,9 +162,10 @@ export default function SinglePost() {
 
 
         {updateMode && (
-          <button className="singlePostButton" onClick={handleUpdate}>
-            Update
-          </button>
+         
+           <Button size="medium" variant="contained" style={{width:"250px"}} className={classes.margin} color="primary" onClick={handleUpdate}>
+           Confirm Update
+         </Button>
         )}
       </div>
 

@@ -9,7 +9,7 @@ const WriteBlogConfig = {
   routes: [
     {
       path: '/apps/blog/blog-write',
-      component: lazy(() => import('./Write.jsx')),
+      component: lazy(() => import('./Writeapp')),
     },
   ],
 };

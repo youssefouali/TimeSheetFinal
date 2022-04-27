@@ -27,6 +27,21 @@
   font-weight: 700;
   margin-top: 15px;
   cursor: pointer;
+  color: rgb(0, 0, 0);
+  text-transform: capitalize;
+  
+  
+}
+
+.postTitle:hover {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 15px;
+  cursor: pointer;
+  color: rgb(209, 108, 0);
+  
+  
 }
 
 .postDate {
@@ -57,14 +72,14 @@
   object-fit: cover;
   border-radius: 7px;
   margin-left: 0em;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
+  -webkit-filter: grayscale(60%);
+  filter: grayscale(60%);
   -webkit-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
 }
 .column#grayscale:hover img {
-  width: 100%;
-  height: 280px;
+  width: 140%;
+  height: 320px;
   object-fit: cover;
   border-radius: 7px;
   -webkit-filter: grayscale(0);

@@ -47,6 +47,26 @@
   cursor: pointer;
 }
 
+.deleteicon{
+  cursor: pointer;
+  color: rgb(255, 145, 0);
+  font-size:x-large;
+
+ 
+}
+
+.deleteicon:hover{
+  cursor: pointer;
+  color: rgb(220, 92, 60);
+  font-size:xx-large;
+
+ 
+}
+
+.iconsb{
+  display: flex;
+  justify-content: flex-end;
+}
 .singlePostIcon:first-child {
   color: teal;
 }
@@ -96,4 +116,10 @@
   cursor: pointer;
   align-self: flex-end;
   margin-top: 20px;
+}
+
+/* //////////////////////////////// */
+
+.linkc{
+  color:#b39656 ;
 }

@@ -9,7 +9,7 @@ const singlepostappconfig = {
   routes: [
     {
       path: '/pages/blog/singlepost',
-      component: lazy(() => import('./SinglePost.jsx')),
+      component: lazy(() => import('./singlepostapp')),
     },
   ],
 };

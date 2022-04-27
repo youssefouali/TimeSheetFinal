@@ -47,8 +47,8 @@ const handleSubmit=async (e)=>{
         <span className="sidebarTitle">CATEGORIES</span>
         <ul className="sidebarList">
           {cats.map((c) => (
-            <Link to={`/?cat=${c.name}`} className="link">
-            <li className="sidebarListItem">{c.name}</li>
+            <Link to={`/apps/blog/blog-home?cat=${c.name}`} >
+            <font className="sidebarListItem">{c.name}</font>
             </Link>
           ))}
         </ul>

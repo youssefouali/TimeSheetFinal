@@ -57,6 +57,8 @@
   
   .writequestionhome{
     display: flex;
+    justify-content: space-between,
+    
 }
 
 .ql-editor{
@@ -67,4 +69,29 @@
     min-width: 900px;
     max-width: auto;
     
+  }
+
+  .searchb{
+    display: flex;
+  }
+
+  .viewmorebtn{
+    color: rgb(255, 255, 255);
+    background-color: green;
+    justify-content: center;
+    margin: 50px;
+    display: flex;
+  }
+
+  .viewmorebtn:hover{
+    color: rgb(0, 0, 0);
+    justify-content: center;
+    margin: 50px;
+  }
+
+  .viewmorebtnpo{
+   
+    justify-content: center;
+    
+    display: flex;
   }

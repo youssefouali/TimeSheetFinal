@@ -9,7 +9,7 @@ const AskQuestionBlogConfig = {
   routes: [
     {
       path: '/apps/blog/blog-questions',
-      component: lazy(() => import('./WriteQuestion')),
+      component: lazy(() => import('./Writeapp')),
     },
   ],
 };

@@ -7,7 +7,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: flex;
 }
+
+
+
 
 .sidebarItem {
   display: flex;
@@ -43,10 +47,13 @@
 }
 
 .sidebarListItem {
-  display: inline-block;
+  display:inline-flex;
   width: 50%;
   margin-top: 15px;
   cursor: pointer;
+  color: black;
+  justify-content: space-evenly;
+  
 }
 
 .sidebarSocial {

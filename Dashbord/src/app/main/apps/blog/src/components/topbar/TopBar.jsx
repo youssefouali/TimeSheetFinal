@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./topbar.css";
 
+
 export default function TopBar() {
   const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:5000/images/"
@@ -31,6 +32,7 @@ export default function TopBar() {
             </Link>
           </li>
           <li className="topListItem">
+            
             <Link className="link" to="/writequestion">
               ASK A QUESTION
             </Link>
