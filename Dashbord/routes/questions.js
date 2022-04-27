@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/User");
+const User = require("../models/userModel");
 const Question = require("../models/Question");
 
 //CREATE QUESTION
@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const question = await Question.findById(req.params.id);
-    if (question.username === req.body.username) {
+    if (question.name === req.body.name) {
       try {
         const updatedQuestion = await Question.findByIdAndUpdate(
           req.params.id,
@@ -28,7 +28,7 @@ router.put("/:id", async (req, res) => {
         res.status(500).json(err);
       }
     } else {
-      res.status(401).json("You can update only your post!");
+      res.status(401).json("You can update only your question!");
     }
   } catch (err) {
     res.status(500).json(err);
@@ -39,9 +39,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const question = await Question.findById(req.params.id);
-    if (question.username === req.body.username) {
+    if (question.name === req.body.name) {
       try {
-        await post.delete();
+        await question.delete();
         res.status(200).json("Question has been deleted...");
       } catch (err) {
         res.status(500).json(err);
@@ -55,7 +55,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 //GET QUESTION
-router.get("/:id", async (req, res) => {
+router.get("/pages/blog/singlequestion/:id", async (req, res) => {
   try {
     const question = await Question.findById(req.params.id);
     res.status(200).json(question);
@@ -66,12 +66,12 @@ router.get("/:id", async (req, res) => {
 
 //GET ALL QUESTIONS
 router.get("/", async (req, res) => {
-  const username = req.query.user;
+  const emailvalue = req.query.user;
   const catName = req.query.cat;
   try {
     let questions;
-    if (username) {
-        questions = await Question.find({ username });
+    if (emailvalue) {
+        questions = await Question.find({ emailvalue });
     } else if (catName) {
         questions = await Question.find({
         categories: {
@@ -81,6 +81,45 @@ router.get("/", async (req, res) => {
     } else {
         questions = await Question.find();
     }
+    res.status(200).json(questions);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//GET FOUR QUESTIONS
+router.get("/four", async (req, res) => {
+  try {
+    let questions;
+    const limit = 4;
+        questions = await Question.find().limit(limit);
+    
+    res.status(200).json(questions);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//SORT BY TITLE A-Z
+router.get("/sortasc", async (req, res) => {
+  try {
+    let questions;
+   
+        questions = await Question.find().sort( { title: 1 } )
+    
+    res.status(200).json(questions);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//SORT BY TITLE Z-A
+router.get("/sortdesc", async (req, res) => {
+  try {
+    let questions;
+   
+        questions = await Question.find().sort( { title: -1 } )
+    
     res.status(200).json(questions);
   } catch (err) {
     res.status(500).json(err);
