@@ -123,13 +123,13 @@ const navigationConfig = [
             icon: 'person',
             url: '/apps/blog/blog-questions',
           },
-          // {
-          //   id: 'single-post',
-          //   title: 'post',
-          //   type: 'item',
-          //   icon: 'person',
-          //   url: '/apps/blog/singlepost',
-          // },
+          {
+            id: 'search-questions',
+            title: 'Search questions',
+            type: 'item',
+            icon: 'person',
+            url: '/apps/blog/search-questions',
+          },
         ]
       },
       
