@@ -11,9 +11,9 @@ const QuestionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    username: {
+    emailvalue: {
       type: String,
-      required: true,
+      required: false,
     },
     categories: {
       type: Array,

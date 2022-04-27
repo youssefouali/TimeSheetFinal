@@ -15,9 +15,9 @@ const PostblogSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    username: {
+    emailvalue: {
       type: String,
-      required: true,
+      required: false,
     },
     categories: {
       type: Array,
